@@ -1,4 +1,3 @@
-
 const options = {
   method: 'GET',
   headers: {
@@ -8,7 +7,13 @@ const options = {
 };
 
 fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc', options)
-  .then(response => response.json())
-  .then(response => console.log(response.results))
+  .then(movieList => movieList.json())
+  .then(movieList => console.log(movieList.results))
+  .catch(err => console.error(err));
+
+
+fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
+  .then(genresList => genresList.json())
+  .then(genresList => console.log(genresList.genres))
   .catch(err => console.error(err));
 
